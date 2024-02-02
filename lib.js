@@ -1,5 +1,5 @@
-const sum = (a, b) => {
+exports.sum = (a, b) => {
   return a + b;
 };
 
-export { sum };
+// export { sum };
