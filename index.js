@@ -1,19 +1,19 @@
-const http = require("http");
-
 const fs = require("fs");
+// fs is file system
+const data = JSON.parse(fs.readFileSync("data.json", "utf-8"));
+const products = data.products;
 
-const index = fs.readFileSync("index.html", "utf-8");
-const data = fs.readFileSync("data.json", "utf-8");
+const express = require("express");
+const server = express();
 
-const server = http.createServer((req, res) => {
-  console.log(req.url);
-
-  console.log("server started");
-  //   res.setHeader("Dummy", "DummyValue");
-  //   res.setHeader("Content-Type", "text/html");
-  res.setHeader("Content-Type", "application/json");
-  //   res.end(JSON.stringify(data));
-  res.end(data);
+server.get("/", (req, res) => {
+  // res.send("<h1>hello</h1>");
+  // res.sendFile("/Users/Acer/Desktop/nodeJs/index.html");
+  // res.json(products);
+  // res.sendStatus(200);
+  res.status(200).send("<h1>This is Sadan Mian</h1>");
 });
 
-server.listen(8080);
+server.listen(8080, () => {
+  console.log("Server Start");
+});
