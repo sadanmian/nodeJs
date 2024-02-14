@@ -65,12 +65,17 @@ server.patch("/products/:id", (req, res) => {
   const id = +req.params.id;
   const productIndex = products.findIndex((p) => p.id === id);
   const product = products[productIndex];
-  products.splice(productIndex, 1, { ...req.body });
+  products.splice(productIndex, 1, { ...product, ...req.body });
   res.status(201).json({ type: "Patch Done" });
 });
 
-server.delete("/", (req, res) => {
-  res.json({ type: "DELETE" });
+// DELETE /products/:id
+server.delete("/products/:id", (req, res) => {
+  const id = +req.params.id;
+  const productIndex = products.findIndex((e) => e.id === id);
+  const product = products[productIndex];
+  products.splice(productIndex, 1);
+  res.status(201).json(product);
 });
 
 // server.get("/demo", (req, res) => {
