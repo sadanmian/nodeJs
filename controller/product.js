@@ -15,30 +15,30 @@ exports.getAllProducts = (req, res) => {
 
 exports.getProduct = (req, res) => {
   // console.log(req.params.id);
-  exports.id = +req.params.id;
-  exports.product = products.find((p) => p.id === id);
+  const id = +req.params.id;
+  const product = products.find((p) => p.id === id);
   res.json(product);
 };
 
 exports.replaceProduct = (req, res) => {
-  exports.id = +req.params.id;
-  exports.productIndex = products.findIndex((p) => p.id === id);
+  const id = +req.params.id;
+  const productIndex = products.findIndex((p) => p.id === id);
   products.splice(productIndex, 1, { ...req.body, id: id });
   res.status(201).json({ type: "Put Done" });
 };
 
 exports.updateProduct = (req, res) => {
-  exports.id = +req.params.id;
-  exports.productIndex = products.findIndex((p) => p.id === id);
-  exports.product = products[productIndex];
+  const id = +req.params.id;
+  const productIndex = products.findIndex((p) => p.id === id);
+  const product = products[productIndex];
   products.splice(productIndex, 1, { ...product, ...req.body });
   res.status(201).json({ type: "Patch Done" });
 };
 
 exports.deleteProduct = (req, res) => {
-  exports.id = +req.params.id;
-  exports.productIndex = products.findIndex((e) => e.id === id);
-  exports.product = products[productIndex];
+  const id = +req.params.id;
+  const productIndex = products.findIndex((e) => e.id === id);
+  const product = products[productIndex];
   products.splice(productIndex, 1);
   res.status(201).json(product);
 };
